@@ -45,16 +45,25 @@ $("button").on("click", function() {
     })
     .then(function(response) {
         var results = response.data;
+        // console.log(results);
         for (var e = 0; e < results.length; e++) {
             if (results[e].rating !== "r"/* && results[i].rating !== "pg-13"*/) {
-                var gifDiv = $("div");
+                
                 var rating = results[e].rating;
+
+                var gifDiv = $("div");
+
                 var hThree = $("<h3>").text("Rated: " + rating);
+
                 var beastImage = $("<img>");
+                // console.log(beastImage);
                 beastImage.attr("src", results[e].images.fixed_height.url);
-                gifDiv.append(hThree);
-                gifDiv.append(beastImage);
+
                 $("#gif-dump").prepend(gifDiv);
+                gifDiv.append(beastImage);
+                gifDiv.append(hThree);
+                
+                // console.log(gifDiv);
             }
         }
     });
