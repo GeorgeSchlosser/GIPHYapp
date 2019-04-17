@@ -4,6 +4,10 @@
 // mythological beasts
 var topics = ["dragon", "pheonix", "kraken", "sphinx", "basilisk", "manticore", "leviathon", "cthullu"];
 
+var key = "&api_key=7zafGwFJdX1OVFG69CMxokYSTWaTgR4Y";
+var apiSearch  = "https://api.giphy.com/v1/gifs/search?q=";
+var limitTen = "&limit=10";
+
 
 // FUNCTIONS
 // ==========================================================
@@ -14,7 +18,7 @@ function generateButtons() {
     for (var i = 0; i < topics.length; i++) {
         var b = $("<button>");
         b.addClass("beast-btn");
-        b.attr("data-name", topics[i]);
+        b.attr("data-beast", topics[i]);
         b.text(topics[i]);
         $("#button-dump").append(b);
     }
@@ -29,6 +33,33 @@ function generateButtons() {
 // ==========================================================
 
 generateButtons();
+
+// get gifs on button click
+$("button").on("click", function() {
+    var beast = $(this).attr("data-beast");
+    var queryURL = apiSearch + beast + key + limitTen;
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+    .then(function(response) {
+        var results = response.data;
+        for (var e = 0; e < results.length; e++) {
+            if (results[e].rating !== "r"/* && results[i].rating !== "pg-13"*/) {
+                var gifDiv = $("div");
+                var rating = results[e].rating;
+                var hThree = $("<h3>").text("Rated: " + rating);
+                var beastImage = $("<img>");
+                beastImage.attr("src", results[e].images.fixed_height.url);
+                gifDiv.append(hThree);
+                gifDiv.append(beastImage);
+                $("#gif-dump").prepend(gifDiv);
+            }
+        }
+    });
+});
+
 // when button pressed, grab 10 paused gifs from giphy api
     // when gif clicked play, click again to pause
 // display rating under gif
