@@ -2,7 +2,7 @@
 // ==========================================================
 
 // mythological beasts
-var topics = ["dragon", "pheonix", "kraken", "sphinx", "basilisk", "manticore", "leviathon", "cthullu"];
+var topics = ["dragon", "pheonix", "kraken", "sphinx", "basilisk", "manticore", "leviathan", "cthullu"];
 
 var key = "&api_key=7zafGwFJdX1OVFG69CMxokYSTWaTgR4Y";
 var apiSearch  = "https://api.giphy.com/v1/gifs/search?q=";
@@ -44,6 +44,7 @@ $("button").on("click", function() {
         method: "GET"
     })
     .then(function(response) {
+        console.log(response);
         var results = response.data;
         // console.log(results);
         for (var e = 0; e < results.length; e++) {
