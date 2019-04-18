@@ -58,6 +58,11 @@ $("button").on("click", function() {
 
                 var beastImage = $("<img>");
                 beastImage.attr("src", results[e].images.fixed_height_still.url);
+                // attributes & class for play/pause
+                beastImage.attr("data-still", results[e].images.fixed_height_still.url);
+                beastImage.attr("data-play", results[e].images.fixed_height.url);
+                beastImage.attr("data-state", "still");
+                beastImage.addClass("gif");
 
                 $("#gif-dump").prepend(gifDiv);
                 gifDiv.append(beastImage);
