@@ -34,7 +34,7 @@ function generateButtons() {
 
 generateButtons();
 
-// get gifs on button click
+//generate gifs on button click
 $("button").on("click", function() {
     var beast = $(this).attr("data-beast");
     var queryURL = apiSearch + beast + key + limitTen;
@@ -44,7 +44,7 @@ $("button").on("click", function() {
         method: "GET"
     })
     .then(function(response) {
-        console.log(response);
+        // console.log(response);
         var results = response.data;
         // console.log(results);
         for (var e = 0; e < results.length; e++) {
@@ -53,6 +53,7 @@ $("button").on("click", function() {
                 var rating = results[e].rating;
 
                 var gifDiv = $("<div>");
+                
 
                 var hThree = $("<h3>").text("Rated: " + rating);
 
@@ -60,7 +61,7 @@ $("button").on("click", function() {
                 beastImage.attr("src", results[e].images.fixed_height_still.url);
                 // attributes & class for play/pause
                 beastImage.attr("data-still", results[e].images.fixed_height_still.url);
-                beastImage.attr("data-play", results[e].images.fixed_height.url);
+                beastImage.attr("data-animate", results[e].images.fixed_height.url);
                 beastImage.attr("data-state", "still");
                 beastImage.addClass("gif");
 
@@ -74,7 +75,37 @@ $("button").on("click", function() {
     });
 });
 
-// when button pressed, grab 10 paused gifs from giphy api
+// play/pause by clicking gif
+
+// 
+// $(".gif").on("click", function() {
+//         var state = $(this).attr("data-state");
+//         if (state === "still") {
+//             $(this).attr("src", $(this).attr("data-animate"));
+//             $(this).attr("data-state", "animate");
+//         } 
+//         else {
+//             $(this).attr("src", $(this).attr("data-still"));
+//             $(this).attr("data-state", "still");
+//         };
+
+//         console.log(state);
+
+// });
+
+// WHY DOES THIS WORK BUT MY CODE DOESNT?!?!?
+$(document.body).on('click', ".gif", function () {
+    var $img = $(this);
+    if ($img.attr("data-state") == "still") {
+        $img.attr("src", $img.attr("data-animate"));
+        $img.attr("data-state", "animated");
+    } else {
+        $img.attr("src", $img.attr("data-still"));
+        $img.attr("data-state", "still");
+    }
+});
+
+// when button pressed, grab 10 paused gifs from giphy api: COMPLETE
     // when gif clicked play, click again to pause
-// display rating under gif
+// display rating under gif: COMPLETE
 
