@@ -51,12 +51,12 @@ $("button").on("click", function() {
                 
                 var rating = results[e].rating;
 
-                var gifDiv = $("div");
+                var gifDiv = $("<div>");
 
                 var hThree = $("<h3>").text("Rated: " + rating);
 
                 var beastImage = $("<img>");
-                // console.log(beastImage);
+                console.log(beastImage, hThree, gifDiv, rating);
                 beastImage.attr("src", results[e].images.fixed_height.url);
 
                 $("#gif-dump").prepend(gifDiv);
