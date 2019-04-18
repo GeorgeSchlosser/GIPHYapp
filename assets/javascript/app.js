@@ -77,33 +77,33 @@ $("button").on("click", function() {
 
 // play/pause by clicking gif
 
-// 
-// $(".gif").on("click", function() {
-//         var state = $(this).attr("data-state");
-//         if (state === "still") {
-//             $(this).attr("src", $(this).attr("data-animate"));
-//             $(this).attr("data-state", "animate");
-//         } 
-//         else {
-//             $(this).attr("src", $(this).attr("data-still"));
-//             $(this).attr("data-state", "still");
-//         };
 
-//         console.log(state);
+$("#gif-dump").on("click", ".gif", function() {
+        var state = $(this).attr("data-state");
+        if (state === "still") {
+            $(this).attr("src", $(this).attr("data-animate"));
+            $(this).attr("data-state", "animate");
+        } 
+        else {
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
+        };
 
-// });
+        console.log(state);
+
+});
 
 // WHY DOES THIS WORK BUT MY CODE DOESNT?!?!?
-$(document.body).on('click', ".gif", function () {
-    var $img = $(this);
-    if ($img.attr("data-state") == "still") {
-        $img.attr("src", $img.attr("data-animate"));
-        $img.attr("data-state", "animated");
-    } else {
-        $img.attr("src", $img.attr("data-still"));
-        $img.attr("data-state", "still");
-    }
-});
+// $(document.body).on('click', ".gif", function () {
+//     var $img = $(this);
+//     if ($img.attr("data-state") == "still") {
+//         $img.attr("src", $img.attr("data-animate"));
+//         $img.attr("data-state", "animated");
+//     } else {
+//         $img.attr("src", $img.attr("data-still"));
+//         $img.attr("data-state", "still");
+//     }
+// });
 
 // when button pressed, grab 10 paused gifs from giphy api: COMPLETE
     // when gif clicked play, click again to pause
