@@ -34,8 +34,18 @@ function generateButtons() {
 
 generateButtons();
 
+// create button w/ form
+$("#add-beast").on("click", function(event) {
+    event.preventDefault();
+    var newBeast = $("#beast-input").val().trim();
+    // console.log(newBeast);
+    topics.push(newBeast);
+    console.log(topics);
+    generateButtons();
+});
+
 //generate gifs on button click
-$("button").on("click", function() {
+$("#button-dump").on("click", ".beast-btn", function() {
     var beast = $(this).attr("data-beast");
     var queryURL = apiSearch + beast + key + limitTen;
 
@@ -69,15 +79,13 @@ $("button").on("click", function() {
                 gifDiv.append(beastImage);
                 gifDiv.append(hThree);
                 
-                // console.log(gifDiv);
+                console.log(gifDiv);
             }
         }
     });
 });
 
 // play/pause by clicking gif
-
-
 $("#gif-dump").on("click", ".gif", function() {
         var state = $(this).attr("data-state");
         if (state === "still") {
@@ -106,6 +114,6 @@ $("#gif-dump").on("click", ".gif", function() {
 // });
 
 // when button pressed, grab 10 paused gifs from giphy api: COMPLETE
-    // when gif clicked play, click again to pause
+    // when gif clicked play, click again to pause COMPLETE
 // display rating under gif: COMPLETE
 
