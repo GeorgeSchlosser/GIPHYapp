@@ -25,23 +25,16 @@ function generateButtons() {
     }
 };
 
-// take user input from html form and add to topics
-    // recreate buttons
-
-
-
 // APPLICATION
 // ==========================================================
 
 generateButtons();
 
-// create button w/ form
+// create new button w/ form
 $("#add-beast").on("click", function(event) {
     event.preventDefault();
     var newBeast = $("#beast-input").val().trim();
-    // console.log(newBeast);
     topics.push(newBeast);
-    console.log(topics);
     generateButtons();
 });
 
@@ -55,32 +48,31 @@ $("#button-dump").on("click", ".beast-btn", function() {
         method: "GET"
     })
     .then(function(response) {
-        // console.log(response);
+        // put response into a variable
         var results = response.data;
-        // console.log(results);
+        // loop through results
         for (var e = 0; e < results.length; e++) {
+            // omits r-rated gifs
             if (results[e].rating !== "r"/* && results[i].rating !== "pg-13"*/) {
-                
+                // gets rating to be display
                 var rating = results[e].rating;
-
+                // make a div
                 var gifDiv = $("<div>");
-                
-
+                // display rating
                 var hThree = $("<h3>").text("Rated: " + rating);
-
+                // make an img
                 var beastImage = $("<img>");
+                // link to paused gif for img
                 beastImage.attr("src", results[e].images.fixed_height_still.url);
                 // attributes & class for play/pause
                 beastImage.attr("data-still", results[e].images.fixed_height_still.url);
                 beastImage.attr("data-animate", results[e].images.fixed_height.url);
                 beastImage.attr("data-state", "still");
                 beastImage.addClass("gif");
-
+                // places gifs on the page
                 $("#gif-dump").prepend(gifDiv);
                 gifDiv.append(beastImage);
                 gifDiv.append(hThree);
-                
-                console.log(gifDiv);
             }
         }
     });
@@ -97,24 +89,4 @@ $("#gif-dump").on("click", ".gif", function() {
             $(this).attr("src", $(this).attr("data-still"));
             $(this).attr("data-state", "still");
         };
-
-        console.log(state);
-
 });
-
-// WHY DOES THIS WORK BUT MY CODE DOESNT?!?!?
-// $(document.body).on('click', ".gif", function () {
-//     var $img = $(this);
-//     if ($img.attr("data-state") == "still") {
-//         $img.attr("src", $img.attr("data-animate"));
-//         $img.attr("data-state", "animated");
-//     } else {
-//         $img.attr("src", $img.attr("data-still"));
-//         $img.attr("data-state", "still");
-//     }
-// });
-
-// when button pressed, grab 10 paused gifs from giphy api: COMPLETE
-    // when gif clicked play, click again to pause COMPLETE
-// display rating under gif: COMPLETE
-
