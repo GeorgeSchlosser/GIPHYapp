@@ -18,6 +18,7 @@ function generateButtons() {
     for (var i = 0; i < topics.length; i++) {
         var b = $("<button>");
         b.addClass("beast-btn");
+        b.addClass("btn-secondary");
         b.attr("data-beast", topics[i]);
         b.text(topics[i]);
         $("#button-dump").append(b);
