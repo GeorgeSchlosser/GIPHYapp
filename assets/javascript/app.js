@@ -1,13 +1,12 @@
 // GLOBAL VARIABLES
 // ==========================================================
 
-// mythological beasts
+// mythological beasts array
 var topics = ["dragon", "pheonix", "kraken", "sphinx", "basilisk", "manticore", "leviathan", "cthullu"];
-
+// variables to concatenate URL for ajax
 var key = "&api_key=7zafGwFJdX1OVFG69CMxokYSTWaTgR4Y";
 var apiSearch  = "https://api.giphy.com/v1/gifs/search?q=";
 var limitTen = "&limit=10";
-
 
 // FUNCTIONS
 // ==========================================================
@@ -28,6 +27,7 @@ function generateButtons() {
 // APPLICATION
 // ==========================================================
 
+// initial buttons
 generateButtons();
 
 // create new button w/ form
